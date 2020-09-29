@@ -35,6 +35,7 @@ public class Person {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // 输出：100000
         System.out.println(person.getId());
     }
 }
