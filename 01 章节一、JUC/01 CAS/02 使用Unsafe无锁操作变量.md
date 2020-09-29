@@ -19,7 +19,7 @@ public class Client {
 }
 ```
 
-##### 使用Unsafe无锁操作实例变量
+##### 2 使用Unsafe无锁操作实例变量
 
 ```java
 public class Client {
