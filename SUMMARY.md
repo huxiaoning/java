@@ -5,3 +5,5 @@
 	* [CAS](01 章节一、JUC/01 CAS/README.md)
 		* [获取Unsafe实例](01 章节一、JUC/01 CAS/01 获取Unsafe实例.md)
 		* [使用Unsafe无锁操作变量](01 章节一、JUC/01 CAS/02 使用Unsafe无锁操作变量.md)
+* [章节二、常规操作](02 章节二、常规操作/README.md)
+	* [读取.properties文件](02 章节二、常规操作/01 读取.properties文件.md)
