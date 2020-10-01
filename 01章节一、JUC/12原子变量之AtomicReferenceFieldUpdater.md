@@ -62,3 +62,33 @@ public class Person {
 
 好处是源对象不可修改的情况下（来自第三个Jar包里面的类）,我们也可以原子性的修改这个类的属性
 
+
+
+`Teacher`类的代码如下:
+
+```java
+public class Teacher {
+
+    private int id;
+
+    public Teacher(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                '}';
+    }
+}
+```
+
