@@ -45,4 +45,15 @@ public class Person {
 
 
 
-`AtomicIntegerArray`可以原子性的修改数据某个索引处理元素。
+`AtomicIntegerArray`可以原子性的修改数组中某个索引处的元素。
+
+
+
+当然，你也可以直接使用`AtomicIntegerArray`的API来自增某个元素
+
+```java
+    public void incr() {
+        arr.incrementAndGet(0);
+    }
+```
+
