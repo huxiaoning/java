@@ -61,3 +61,7 @@ public class Person {
     }
 }
 ```
+
+
+
+注意：`AtomicReference`存在ABA问题,推荐使用`AtomicStampedReference`
