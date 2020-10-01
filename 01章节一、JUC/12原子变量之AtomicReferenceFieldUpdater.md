@@ -1,4 +1,4 @@
-##### 原子变量之AtomicLongFieldUpdater
+##### 原子变量之AtomicReferenceFieldUpdater
 
 ```java
 public class Person {
