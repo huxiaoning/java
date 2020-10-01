@@ -13,6 +13,7 @@
 	* [原子变量之AtomicReferenceArray](01章节一、JUC/09原子变量之AtomicReferenceArray.md)
 	* [原子变量之AtomicIntegerFieldUpdater](01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md)
 	* [原子变量之AtomicLongFieldUpdater](01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md)
+	* [原子变量之AtomicReferenceFieldUpdater](01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.md)
 * [章节二、JVM](02章节二、JVM/README.md)
 * [章节三、常规操作](03章节三、常规操作/README.md)
 	* [读取.properties文件](03章节三、常规操作/01读取.properties文件.md)
