@@ -7,6 +7,7 @@
 	* [原子变量之AtomicInteger](01章节一、JUC/03原子变量之AtomicInteger.md)
 	* [原子变量之AtomicBoolean](01章节一、JUC/04原子变量之AtomicBoolean.md)
 	* [原子变量之AtomicLong](01章节一、JUC/05原子变量之AtomicLong.md)
+	* [原子变量之AtomicReference](01章节一、JUC/06原子变量之AtomicReference.md)
 * [章节二、JVM](02章节二、JVM/README.md)
 * [章节三、常规操作](03章节三、常规操作/README.md)
 	* [读取.properties文件](03章节三、常规操作/01读取.properties文件.md)

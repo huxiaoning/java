@@ -1,4 +1,4 @@
-##### 原子变量之AtomicBoolean
+##### 原子变量之AtomicLong
 
 ```java
 public class Person {
