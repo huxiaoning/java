@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>章节三、常规操作 · Java学习笔记</title>
+        <title>读取.properties文件 · Java学习笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01读取.properties文件.html" />
     
-    
-    <link rel="prev" href="../02章节二、JVM/" />
+    <link rel="prev" href="./" />
     
 
     <style>
@@ -320,7 +318,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="./">
+        <li class="chapter " data-level="1.2.3" data-path="./">
             
                 <a href="./">
             
@@ -334,7 +332,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="01读取.properties文件.html">
+        <li class="chapter active" data-level="1.2.3.1" data-path="01读取.properties文件.html">
             
                 <a href="01读取.properties文件.html">
             
@@ -387,7 +385,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >章节三、常规操作</a>
+        <a href="../.." >读取.properties文件</a>
     </h1>
 </div>
 
@@ -402,7 +400,22 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="02&#x7AE0;&#x8282;&#x4E8C;&#x3001;&#x5E38;&#x89C4;&#x64CD;&#x4F5C;">02&#x7AE0;&#x8282;&#x4E8C;&#x3001;&#x5E38;&#x89C4;&#x64CD;&#x4F5C;</h1>
+                                <h5 id="&#x8BFB;&#x53D6;properties&#x6587;&#x4EF6;">&#x8BFB;&#x53D6;.properties&#x6587;&#x4EF6;</h5>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        InputStream in = Client.class.getClassLoader().getResourceAsStream(<span class="hljs-string">&quot;a.properties&quot;</span>);
+        Properties p = <span class="hljs-keyword">new</span> Properties();
+        <span class="hljs-keyword">try</span> {
+            p.load(in);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+        <span class="hljs-comment">// Hello World</span>
+        System.out.println(p.getProperty(<span class="hljs-string">&quot;a.b.c&quot;</span>));
+    }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -430,14 +443,10 @@
 
             
                 
-                <a href="../02章节二、JVM/" class="navigation navigation-prev " aria-label="Previous page: 章节二、JVM">
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 章节三、常规操作">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="01读取.properties文件.html" class="navigation navigation-next " aria-label="Next page: 读取.properties文件">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -446,7 +455,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"章节三、常规操作","level":"1.2.3","depth":2,"next":{"title":"读取.properties文件","level":"1.2.3.1","depth":3,"path":"01杂七杂八/03章节三、常规操作/01读取.properties文件.md","ref":"01杂七杂八/03章节三、常规操作/01读取.properties文件.md","articles":[]},"previous":{"title":"章节二、JVM","level":"1.2.2","depth":2,"path":"01杂七杂八/02章节二、JVM/README.md","ref":"01杂七杂八/02章节二、JVM/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01杂七杂八/03章节三、常规操作/README.md","mtime":"2020-10-27T15:10:12.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:42:44.971Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"读取.properties文件","level":"1.2.3.1","depth":3,"previous":{"title":"章节三、常规操作","level":"1.2.3","depth":2,"path":"10杂七杂八/03章节三、常规操作/README.md","ref":"10杂七杂八/03章节三、常规操作/README.md","articles":[{"title":"读取.properties文件","level":"1.2.3.1","depth":3,"path":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","ref":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","mtime":"2020-10-27T15:10:12.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:43:49.389Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

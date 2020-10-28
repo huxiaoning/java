@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>原子变量之AtomicBoolean · Java学习笔记</title>
+        <title>原子变量之AtomicIntegerFieldUpdater · Java学习笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="05原子变量之AtomicLong.html" />
+    <link rel="next" href="11原子变量之AtomicLongFieldUpdater.html" />
     
     
-    <link rel="prev" href="03原子变量之AtomicInteger.html" />
+    <link rel="prev" href="09原子变量之AtomicReferenceArray.html" />
     
 
     <style>
@@ -185,7 +185,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.4" data-path="04原子变量之AtomicBoolean.html">
+        <li class="chapter " data-level="1.2.1.4" data-path="04原子变量之AtomicBoolean.html">
             
                 <a href="04原子变量之AtomicBoolean.html">
             
@@ -263,7 +263,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.10" data-path="10原子变量之AtomicIntegerFieldUpdater.html">
+        <li class="chapter active" data-level="1.2.1.10" data-path="10原子变量之AtomicIntegerFieldUpdater.html">
             
                 <a href="10原子变量之AtomicIntegerFieldUpdater.html">
             
@@ -387,7 +387,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >原子变量之AtomicBoolean</a>
+        <a href="../.." >原子变量之AtomicIntegerFieldUpdater</a>
     </h1>
 </div>
 
@@ -402,34 +402,43 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h5 id="&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;atomicboolean">&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;AtomicBoolean</h5>
+                                <h5 id="&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;atomicintegerfieldupdater">&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;AtomicIntegerFieldUpdater</h5>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
 
-    <span class="hljs-keyword">private</span> AtomicBoolean flag = <span class="hljs-keyword">new</span> AtomicBoolean(<span class="hljs-keyword">false</span>);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> id;
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">getFlag</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">return</span> flag.get();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>{
+        <span class="hljs-keyword">this</span>.id = id;
     }
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toggle</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">for</span> (; ; ) {
-            <span class="hljs-keyword">boolean</span> oldValue = flag.get();
-            <span class="hljs-keyword">boolean</span> success = flag.compareAndSet(oldValue, !oldValue);
-            <span class="hljs-keyword">if</span> (success) {
-                <span class="hljs-keyword">break</span>;
-            }
-        }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> id;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Person{&quot;</span> +
+                <span class="hljs-string">&quot;id=&quot;</span> + id +
+                <span class="hljs-string">&apos;}&apos;</span>;
     }
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        AtomicIntegerFieldUpdater&lt;Person&gt; idUpdater = AtomicIntegerFieldUpdater.newUpdater(Person.class, <span class="hljs-string">&quot;id&quot;</span>);
+        Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-number">0</span>);
+
         <span class="hljs-keyword">int</span> count = <span class="hljs-number">100000</span>;
         CountDownLatch latch = <span class="hljs-keyword">new</span> CountDownLatch(count);
-        <span class="hljs-keyword">final</span> Person person = <span class="hljs-keyword">new</span> Person();
-        <span class="hljs-comment">// &#x8F93;&#x51FA;&#x9ED8;&#x8BA4;&#x503C; false</span>
-        System.out.println(person.getFlag());
+        <span class="hljs-comment">// Person{id=0}</span>
+        System.out.println(person);
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
             <span class="hljs-keyword">new</span> Thread(() -&gt; {
-                person.toggle();
+                <span class="hljs-keyword">for</span> (; ; ) {
+                    <span class="hljs-keyword">int</span> oldId = person.getId();
+                    <span class="hljs-keyword">boolean</span> success = idUpdater.compareAndSet(person, oldId, oldId + <span class="hljs-number">1</span>);
+                    <span class="hljs-keyword">if</span> (success) {
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
                 latch.countDown();
             }).start();
         }
@@ -439,11 +448,12 @@
         } <span class="hljs-keyword">catch</span> (InterruptedException e) {
             e.printStackTrace();
         }
-        <span class="hljs-comment">// &#x8F93;&#x51FA;&#x7ED3;&#x679C;false</span>
-        System.out.println(person.getFlag());
+        <span class="hljs-comment">// Person{id=100000}</span>
+        System.out.println(person);
     }
 }
 </code></pre>
+<p>&#x597D;&#x5904;&#x662F;&#x6E90;&#x5BF9;&#x8C61;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF08;&#x6765;&#x81EA;&#x7B2C;&#x4E09;&#x4E2A;Jar&#x5305;&#x91CC;&#x9762;&#x7684;&#x7C7B;&#xFF09;,&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x539F;&#x5B50;&#x6027;&#x7684;&#x4FEE;&#x6539;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x5C5E;&#x6027;</p>
 
                                 
                                 </section>
@@ -471,12 +481,12 @@
 
             
                 
-                <a href="03原子变量之AtomicInteger.html" class="navigation navigation-prev " aria-label="Previous page: 原子变量之AtomicInteger">
+                <a href="09原子变量之AtomicReferenceArray.html" class="navigation navigation-prev " aria-label="Previous page: 原子变量之AtomicReferenceArray">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="05原子变量之AtomicLong.html" class="navigation navigation-next " aria-label="Next page: 原子变量之AtomicLong">
+                <a href="11原子变量之AtomicLongFieldUpdater.html" class="navigation navigation-next " aria-label="Next page: 原子变量之AtomicLongFieldUpdater">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -487,7 +497,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"原子变量之AtomicBoolean","level":"1.2.1.4","depth":3,"next":{"title":"原子变量之AtomicLong","level":"1.2.1.5","depth":3,"path":"01杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","ref":"01杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","articles":[]},"previous":{"title":"原子变量之AtomicInteger","level":"1.2.1.3","depth":3,"path":"01杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","ref":"01杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.md","mtime":"2020-10-27T15:10:12.748Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:42:44.971Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"原子变量之AtomicIntegerFieldUpdater","level":"1.2.1.10","depth":3,"next":{"title":"原子变量之AtomicLongFieldUpdater","level":"1.2.1.11","depth":3,"path":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","articles":[]},"previous":{"title":"原子变量之AtomicReferenceArray","level":"1.2.1.9","depth":3,"path":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","ref":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","mtime":"2020-10-27T15:10:12.748Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:43:49.389Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

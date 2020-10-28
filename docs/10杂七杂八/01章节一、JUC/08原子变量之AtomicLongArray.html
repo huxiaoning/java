@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>原子变量之AtomicReferenceArray · Java学习笔记</title>
+        <title>原子变量之AtomicLongArray · Java学习笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="10原子变量之AtomicIntegerFieldUpdater.html" />
+    <link rel="next" href="09原子变量之AtomicReferenceArray.html" />
     
     
-    <link rel="prev" href="08原子变量之AtomicLongArray.html" />
+    <link rel="prev" href="07原子变量之AtomicIntegerArray.html" />
     
 
     <style>
@@ -237,7 +237,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.8" data-path="08原子变量之AtomicLongArray.html">
+        <li class="chapter active" data-level="1.2.1.8" data-path="08原子变量之AtomicLongArray.html">
             
                 <a href="08原子变量之AtomicLongArray.html">
             
@@ -250,7 +250,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.9" data-path="09原子变量之AtomicReferenceArray.html">
+        <li class="chapter " data-level="1.2.1.9" data-path="09原子变量之AtomicReferenceArray.html">
             
                 <a href="09原子变量之AtomicReferenceArray.html">
             
@@ -387,7 +387,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >原子变量之AtomicReferenceArray</a>
+        <a href="../.." >原子变量之AtomicLongArray</a>
     </h1>
 </div>
 
@@ -402,22 +402,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h5 id="&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;atomicreferencearray">&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;AtomicReferenceArray</h5>
+                                <h5 id="&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;atomiclongarray">&#x539F;&#x5B50;&#x53D8;&#x91CF;&#x4E4B;AtomicLongArray</h5>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
 
-    <span class="hljs-keyword">private</span> AtomicReferenceArray&lt;Teacher&gt; arr = <span class="hljs-keyword">new</span> AtomicReferenceArray(
-            <span class="hljs-keyword">new</span> Teacher[]{<span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">0</span>), <span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">1</span>), <span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">2</span>), <span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">3</span>), <span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">4</span>),
-                    <span class="hljs-keyword">new</span> Teacher(<span class="hljs-number">5</span>)});
+    <span class="hljs-keyword">private</span> AtomicLongArray arr = <span class="hljs-keyword">new</span> AtomicLongArray(<span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[]{<span class="hljs-number">0L</span>, <span class="hljs-number">1L</span>, <span class="hljs-number">2L</span>, <span class="hljs-number">3L</span>, <span class="hljs-number">4L</span>, <span class="hljs-number">5L</span>});
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Teacher <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">return</span> arr.get(<span class="hljs-number">0</span>);
     }
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">incr</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">for</span> (; ; ) {
-            Teacher oldValue = arr.get(<span class="hljs-number">0</span>);
-            Teacher newValue = <span class="hljs-keyword">new</span> Teacher(oldValue.getId() + <span class="hljs-number">1</span>);
-            <span class="hljs-keyword">boolean</span> success = arr.compareAndSet(<span class="hljs-number">0</span>, oldValue, newValue);
+            <span class="hljs-keyword">long</span> oldValue = arr.get(<span class="hljs-number">0</span>);
+            <span class="hljs-keyword">boolean</span> success = arr.compareAndSet(<span class="hljs-number">0</span>, oldValue, oldValue + <span class="hljs-number">1L</span>);
             <span class="hljs-keyword">if</span> (success) {
                 <span class="hljs-keyword">break</span>;
             }
@@ -428,7 +425,7 @@
         <span class="hljs-keyword">int</span> count = <span class="hljs-number">100000</span>;
         CountDownLatch latch = <span class="hljs-keyword">new</span> CountDownLatch(count);
         Person person = <span class="hljs-keyword">new</span> Person();
-        <span class="hljs-comment">// Teacher{id=0}</span>
+        <span class="hljs-comment">// &#x8F93;&#x51FA;&#x521D;&#x59CB;&#x503C; 0</span>
         System.out.println(person.get());
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
             <span class="hljs-keyword">new</span> Thread(() -&gt; {
@@ -442,33 +439,8 @@
         } <span class="hljs-keyword">catch</span> (InterruptedException e) {
             e.printStackTrace();
         }
-        <span class="hljs-comment">// Teacher{id=100000}</span>
+        <span class="hljs-comment">// &#x8F93;&#x51FA;&#x521D;&#x59CB;&#x503C; 100000</span>
         System.out.println(person.get());
-    }
-}
-</code></pre>
-<p>&#x5F15;&#x7528;&#x7684;<code>Teacher</code>&#x7C7B;&#x6E90;&#x7801;&#x5982;&#x4E0B;:</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Teacher</span> </span>{
-
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Teacher</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>{
-        <span class="hljs-keyword">this</span>.id = id;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">return</span> id;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>{
-        <span class="hljs-keyword">this</span>.id = id;
-    }
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Teacher{&quot;</span> +
-                <span class="hljs-string">&quot;id=&quot;</span> + id +
-                <span class="hljs-string">&apos;}&apos;</span>;
     }
 }
 </code></pre>
@@ -499,12 +471,12 @@
 
             
                 
-                <a href="08原子变量之AtomicLongArray.html" class="navigation navigation-prev " aria-label="Previous page: 原子变量之AtomicLongArray">
+                <a href="07原子变量之AtomicIntegerArray.html" class="navigation navigation-prev " aria-label="Previous page: 原子变量之AtomicIntegerArray">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="10原子变量之AtomicIntegerFieldUpdater.html" class="navigation navigation-next " aria-label="Next page: 原子变量之AtomicIntegerFieldUpdater">
+                <a href="09原子变量之AtomicReferenceArray.html" class="navigation navigation-next " aria-label="Next page: 原子变量之AtomicReferenceArray">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -515,7 +487,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"原子变量之AtomicReferenceArray","level":"1.2.1.9","depth":3,"next":{"title":"原子变量之AtomicIntegerFieldUpdater","level":"1.2.1.10","depth":3,"path":"01杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","ref":"01杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","articles":[]},"previous":{"title":"原子变量之AtomicLongArray","level":"1.2.1.8","depth":3,"path":"01杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","ref":"01杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","mtime":"2020-10-27T15:10:12.748Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:42:44.971Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"原子变量之AtomicLongArray","level":"1.2.1.8","depth":3,"next":{"title":"原子变量之AtomicReferenceArray","level":"1.2.1.9","depth":3,"path":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","ref":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","articles":[]},"previous":{"title":"原子变量之AtomicIntegerArray","level":"1.2.1.7","depth":3,"path":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","ref":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","mtime":"2020-10-27T15:10:12.748Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:43:49.389Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
