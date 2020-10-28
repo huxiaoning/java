@@ -2,6 +2,9 @@
 
 * [Java学习笔记](README.md)
 * [官方文档阅读系列](01官方文档阅读系列/README.md)
+	* [Java Tutorials](01官方文档阅读系列/01Java Tutorials/README.md)
+	* [Java语言规范](01官方文档阅读系列/02Java语言规范/README.md)
+	* [Java虚拟机规范](01官方文档阅读系列/03Java虚拟机规范/README.md)
 * [杂七杂八](10杂七杂八/README.md)
 	* [章节一、JUC](10杂七杂八/01章节一、JUC/README.md)
 		* [CAS之获取Unsafe实例](10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.md)

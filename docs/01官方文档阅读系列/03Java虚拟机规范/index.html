@@ -1,0 +1,555 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Java虚拟机规范 · Java学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Jett">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../10杂七杂八/" />
+    
+    
+    <link rel="prev" href="../02Java语言规范/" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"huxiaoning/java","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Java学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    官方文档阅读系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../01Java Tutorials/">
+            
+                <a href="../01Java Tutorials/">
+            
+                    
+                    Java Tutorials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../02Java语言规范/">
+            
+                <a href="../02Java语言规范/">
+            
+                    
+                    Java语言规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Java虚拟机规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../10杂七杂八/">
+            
+                <a href="../../10杂七杂八/">
+            
+                    
+                    杂七杂八
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../10杂七杂八/01章节一、JUC/">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/">
+            
+                    
+                    章节一、JUC
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.html">
+            
+                    
+                    CAS之获取Unsafe实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.html">
+            
+                    
+                    CAS之使用Unsafe无锁操作变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../../10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.html">
+            
+                    
+                    原子变量之AtomicInteger
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../../10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.html">
+            
+                    
+                    原子变量之AtomicBoolean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.5" data-path="../../10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.html">
+            
+                    
+                    原子变量之AtomicLong
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../../10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.html">
+            
+                    
+                    原子变量之AtomicReference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../../10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.html">
+            
+                    
+                    原子变量之AtomicIntegerArray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.8" data-path="../../10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.html">
+            
+                    
+                    原子变量之AtomicLongArray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.9" data-path="../../10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.html">
+            
+                    
+                    原子变量之AtomicReferenceArray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.10" data-path="../../10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.html">
+            
+                    
+                    原子变量之AtomicIntegerFieldUpdater
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.11" data-path="../../10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.html">
+            
+                    
+                    原子变量之AtomicLongFieldUpdater
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.12" data-path="../../10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.html">
+            
+                <a href="../../10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.html">
+            
+                    
+                    原子变量之AtomicReferenceFieldUpdater
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../10杂七杂八/02章节二、JVM/">
+            
+                <a href="../../10杂七杂八/02章节二、JVM/">
+            
+                    
+                    章节二、JVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../10杂七杂八/03章节三、常规操作/">
+            
+                <a href="../../10杂七杂八/03章节三、常规操作/">
+            
+                    
+                    章节三、常规操作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../../10杂七杂八/03章节三、常规操作/01读取.properties文件.html">
+            
+                <a href="../../10杂七杂八/03章节三、常规操作/01读取.properties文件.html">
+            
+                    
+                    读取.properties文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Java虚拟机规范</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;">Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;</h3>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../02Java语言规范/" class="navigation navigation-prev " aria-label="Previous page: Java语言规范">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../10杂七杂八/" class="navigation navigation-next " aria-label="Next page: 杂七杂八">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Java虚拟机规范","level":"1.2.3","depth":2,"next":{"title":"杂七杂八","level":"1.3","depth":1,"path":"10杂七杂八/README.md","ref":"10杂七杂八/README.md","articles":[{"title":"章节一、JUC","level":"1.3.1","depth":2,"path":"10杂七杂八/01章节一、JUC/README.md","ref":"10杂七杂八/01章节一、JUC/README.md","articles":[{"title":"CAS之获取Unsafe实例","level":"1.3.1.1","depth":3,"path":"10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.md","ref":"10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.md","articles":[]},{"title":"CAS之使用Unsafe无锁操作变量","level":"1.3.1.2","depth":3,"path":"10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.md","ref":"10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.md","articles":[]},{"title":"原子变量之AtomicInteger","level":"1.3.1.3","depth":3,"path":"10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","ref":"10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","articles":[]},{"title":"原子变量之AtomicBoolean","level":"1.3.1.4","depth":3,"path":"10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.md","ref":"10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.md","articles":[]},{"title":"原子变量之AtomicLong","level":"1.3.1.5","depth":3,"path":"10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","ref":"10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","articles":[]},{"title":"原子变量之AtomicReference","level":"1.3.1.6","depth":3,"path":"10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.md","ref":"10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.md","articles":[]},{"title":"原子变量之AtomicIntegerArray","level":"1.3.1.7","depth":3,"path":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","ref":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","articles":[]},{"title":"原子变量之AtomicLongArray","level":"1.3.1.8","depth":3,"path":"10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","ref":"10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","articles":[]},{"title":"原子变量之AtomicReferenceArray","level":"1.3.1.9","depth":3,"path":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","ref":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","articles":[]},{"title":"原子变量之AtomicIntegerFieldUpdater","level":"1.3.1.10","depth":3,"path":"10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","articles":[]},{"title":"原子变量之AtomicLongFieldUpdater","level":"1.3.1.11","depth":3,"path":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","articles":[]},{"title":"原子变量之AtomicReferenceFieldUpdater","level":"1.3.1.12","depth":3,"path":"10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.md","articles":[]}]},{"title":"章节二、JVM","level":"1.3.2","depth":2,"path":"10杂七杂八/02章节二、JVM/README.md","ref":"10杂七杂八/02章节二、JVM/README.md","articles":[]},{"title":"章节三、常规操作","level":"1.3.3","depth":2,"path":"10杂七杂八/03章节三、常规操作/README.md","ref":"10杂七杂八/03章节三、常规操作/README.md","articles":[{"title":"读取.properties文件","level":"1.3.3.1","depth":3,"path":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","ref":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","articles":[]}]}]},"previous":{"title":"Java语言规范","level":"1.2.2","depth":2,"path":"01官方文档阅读系列/02Java语言规范/README.md","ref":"01官方文档阅读系列/02Java语言规范/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01官方文档阅读系列/03Java虚拟机规范/README.md","mtime":"2020-10-28T14:59:27.343Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-28T14:59:33.042Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
