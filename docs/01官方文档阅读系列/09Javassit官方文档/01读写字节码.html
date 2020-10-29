@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Javassit官方文档 · Java学习笔记</title>
+        <title>读写字节码 · Java学习笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01读写字节码.html" />
+    <link rel="next" href="../../10杂七杂八/" />
     
     
-    <link rel="prev" href="../03Java虚拟机规范/" />
+    <link rel="prev" href="./" />
     
 
     <style>
@@ -171,7 +171,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.4" data-path="./">
+        <li class="chapter " data-level="1.2.4" data-path="./">
             
                 <a href="./">
             
@@ -185,7 +185,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.4.1" data-path="01读写字节码.html">
+        <li class="chapter active" data-level="1.2.4.1" data-path="01读写字节码.html">
             
                 <a href="01读写字节码.html">
             
@@ -477,7 +477,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Javassit官方文档</a>
+        <a href="../.." >读写字节码</a>
     </h1>
 </div>
 
@@ -492,24 +492,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="javassist&#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;&#x7B14;&#x8BB0;">Javassist&#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;&#x7B14;&#x8BB0;</h3>
-<p><a href="https://www.javassist.org" target="_blank">&#x6E90;&#x6587;&#x5730;&#x5740;</a></p>
-<p><code>Javassist</code>(<code>Java</code>&#x7F16;&#x7A0B;&#x52A9;&#x624B;)&#x4F7F;&#x7528;<code>Java</code>&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;&#x53D8;&#x5F97;&#x7B80;&#x5355;&#x3002;</p>
-<p>&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5728;<code>Java</code>&#x4E2D;&#x7F16;&#x8F91;&#x5B57;&#x8282;&#x7801;&#x7684;&#x7C7B;&#x5E93;&#x3002;</p>
-<p>&#x5B83;&#x4F7F;<code>Java</code>&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7C7B;&#x3001;<code>JVM</code>&#x52A0;&#x8F7D;&#x7C7B;&#x6587;&#x4EF6;&#x65F6;&#x4FEE;&#x6539;&#x7C7B;&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x4E0E;&#x5176;&#x4ED6;&#x7C7B;&#x4F3C;&#x7684;&#x5B57;&#x8282;&#x7801;&#x7F16;&#x8F91;&#x5668;&#x4E0D;&#x540C;&#xFF0C;<code>Javassist</code>&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x4E2A;&#x7EA7;&#x522B;&#x7684;<code>API</code>&#xFF1A;&#x6E90;&#x4EE3;&#x7801;&#x7EA7;&#x548C;&#x5B57;&#x8282;&#x7801;&#x7EA7;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x7528;&#x6237;&#x4F7F;&#x7528;&#x6E90;&#x4EE3;&#x7801;&#x7EA7;<code>API</code>&#xFF0C;&#x90A3;&#x4E48;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4E0D;&#x4E86;&#x89E3;<code>Java</code>&#x5B57;&#x8282;&#x7801;&#x89C4;&#x8303;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x7F16;&#x8F91;&#x7C7B;&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x6574;&#x4E2A;<code>API</code>&#x53EA;&#x4F7F;&#x7528;<code>Java</code>&#x8BED;&#x8A00;&#x7684;&#x8BCD;&#x6C47;&#x8868;&#x8FDB;&#x884C;&#x8BBE;&#x8BA1;&#x3002;</p>
-<p>&#x60A8;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x4EE5;&#x6E90;&#x6587;&#x672C;&#x7684;&#x5F62;&#x5F0F;&#x6307;&#x5B9A;&#x63D2;&#x5165;&#x7684;&#x5B57;&#x8282;&#x7801;&#xFF1B;<code>Javassist</code>&#x52A8;&#x6001;&#x7F16;&#x8F91;&#x5B83;&#x3002;</p>
-<p>&#x53E6;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x5B57;&#x8282;&#x7801;&#x7EA7;<code>API</code>&#x5141;&#x8BB8;&#x7528;&#x6237;&#x50CF;&#x5176;&#x4ED6;&#x7F16;&#x8F91;&#x5668;&#x4E00;&#x6837;&#x76F4;&#x63A5;&#x7F16;&#x8F91;&#x7C7B;&#x6587;&#x4EF6;&#x3002;</p>
-<h4 id="&#x6709;&#x6548;&#x6027;">&#x6709;&#x6548;&#x6027;</h4>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.javassist<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javassist<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.27.0-GA<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+                                <h3 id="&#x8BFB;&#x5199;&#x5B57;&#x8282;&#x7801;">&#x8BFB;&#x5199;&#x5B57;&#x8282;&#x7801;</h3>
+<p><code>Javassist</code>&#x662F;&#x4E00;&#x4E2A;&#x5904;&#x7406;<code>Java</code>&#x5B57;&#x8282;&#x7801;&#x7684;&#x7C7B;&#x5E93;&#x3002;</p>
+<p><code>Java</code>&#x5B57;&#x8282;&#x7801;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;&#x7C7B;(<code>class</code>)&#x6587;&#x4EF6;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x6BCF;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x4E00;&#x4E2A;<code>Java</code>&#x7C7B;&#x6216;&#x63A5;&#x53E3;&#x3002;</p>
+<p><code>javassist.CtClass</code>&#x7C7B;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#x7684;&#x62BD;&#x8C61;&#x8868;&#x793A;&#x3002;&#x4E00;&#x4E2A;<code>CtClass</code>(&#x7F16;&#x8BD1;&#x65F6;&#x7C7B;)&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x7C7B;&#x6587;&#x4EF6;&#x7684;&#x53E5;&#x67C4;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x7684;&#x7A0B;&#x5E8F;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x7684;&#x793A;&#x4F8B;&#x3002;</p>
+<pre><code class="lang-java">        ClassPool pool = ClassPool.getDefault();
+        CtClass cc = pool.get(<span class="hljs-string">&quot;test.Rectangle&quot;</span>);
+        cc.setSuperclass(pool.get(<span class="hljs-string">&quot;test.Point&quot;</span>));
+        cc.writeFile();
 </code></pre>
-<p><a href="https://www.javassist.org/tutorial/tutorial.html" target="_blank">&#x6559;&#x7A0B;&#x5730;&#x5740;</a></p>
+<p>&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x9996;&#x5148;&#x83B7;&#x5F97;&#x4E00;&#x4E2A;<code>ClassPool</code>&#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x7528;<code>Javassist</code>&#x63A7;&#x5236;&#x5B57;&#x8282;&#x7801;&#x4FEE;&#x6539;&#x3002;</p>
+<p><code>ClassPool</code>&#x5BF9;&#x8C61;&#x662F;&#x8868;&#x793A;&#x7C7B;&#x6587;&#x4EF6;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
+<p>&#x5B83;&#x6839;&#x636E;&#x9700;&#x8981;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#x6765;&#x6784;&#x9020;&#x4E00;&#x4E2A;<code>CtClass</code>&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8BB0;&#x5F55;&#x6240;&#x6784;&#x9020;&#x7684;&#x5BF9;&#x8C61;&#x4EE5;&#x54CD;&#x5E94;&#x4EE5;&#x540E;&#x7684;&#x8BBF;&#x95EE;&#x3002;</p>
+<p>(&#x8BD1;&#x8005;&#xFF1A;&#x5C31;&#x662F;&#x5728;<code>Classpool</code>&#x4E2D;&#x7F13;&#x5B58;&#x4E86;&#x8FD9;&#x4E2A;<code>CtClass</code>&#x5B9E;&#x4F8B;)</p>
+<p>&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x7528;&#x6237;&#x5FC5;&#x987B;&#x9996;&#x5148;&#x4ECE;<code>ClassPool</code>&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x5F85;&#x4FEE;&#x6539;&#x7C7B;&#x7684;<code>CtClass</code>&#x7684;&#x5F15;&#x7528;&#x3002;<code>ClassPool</code>&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;<code>.get()</code>&#x5C31;&#x662F;&#x7528;&#x4E8E;&#x6B64;&#x76EE;&#x7684;&#x3002;</p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x8868;&#x793A;<code>test.Rectangel</code>&#x7C7B;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#x662F;&#x4EBA;<code>ClassPool</code>&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x7684;&#xFF0C;&#x5E76;&#x8D4B;&#x503C;&#x7ED9;&#x53D8;&#x91CF;<code>cc</code>&#x3002;</p>
+<p><code>getDefault()</code>&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;<code>ClassPool</code>&#x5BF9;&#x8C61;&#x641C;&#x7D22;&#x9ED8;&#x8BA4;&#x7684;&#x7CFB;&#x7EDF;&#x641C;&#x7D22;&#x8DEF;&#x5F84;&#x3002;</p>
+<p>&#x4ECE;&#x5B9E;&#x73B0;&#x89D2;&#x5EA6;&#x6765;&#x770B;&#xFF0C;<code>ClassPool</code>&#x662F;&#x4E00;&#x5F20;&#x5B58;&#x50A8;<code>CtClass</code>&#x7684;&#x54C8;&#x5E0C;&#x8868;(<code>Hashtable</code>)&#xFF0C;&#x5B83;&#x4F7F;&#x7528;&#x7C7B;&#x540D;&#x4F5C;&#x4E3A;<code>key</code>&#x3002;</p>
+<p><code>ClassPool</code>&#x7C7B;&#x4E2D;&#x7684;<code>get()</code>&#x65B9;&#x6CD5;&#x5C06;&#x641C;&#x7D22;&#x54C8;&#x5E0C;&#x8868;&#x4EE5;&#x67E5;&#x627E;&#x4E0E;&#x6307;&#x5B9A;<code>key</code>&#x76F8;&#x5173;&#x8054;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x627E;&#x4E0D;&#x5230;&#x8FD9;&#x6837;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#xFF0C;<code>get()</code>&#x65B9;&#x6CD5;&#x5C06;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#x6765;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x65B0;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x8BB0;&#x5F55;&#x5728;&#x54C8;&#x5E0C;&#x8868;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x4F5C;&#x4E3A;<code>get()</code>&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x3002;</p>
+<p>&#x4ECE;<code>ClassPool</code>&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x7684;<code>CtClass</code>&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;(&#x8BE6;&#x7EC6;&#x7684;&#x5982;&#x4F55;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;<code>CtClass</code>&#x5C06;&#x5728;&#x7A0D;&#x540E;&#x5C55;&#x793A;)&#x3002;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;<code>CtClass</code>&#x5BF9;&#x8C61;&#x88AB;&#x4FEE;&#x6539;&#x4E86;&#xFF0C;<code>test.Rectangle</code>&#x7C7B;&#x7684;&#x7236;&#x7C7B;&#x88AB;&#x4FEE;&#x6539;&#x4E3A;<code>test.Point</code>&#x3002;&#x5F53;<code>CtClass</code>&#x5BF9;&#x8C61;&#x7684;<code>writeFile()</code>&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x4FEE;&#x6539;&#x4F1A;&#x53CD;&#x6620;&#x5230;&#x539F;&#x59CB;&#x7C7B;&#x6587;&#x4EF6;&#x4E0A;&#x3002;</p>
+<pre><code class="lang-shell">$ javap -p test/Rectangle.class
+Compiled from &quot;Rectangle.java&quot;
+public class test.Rectangle extends test.Point {
+  public test.Rectangle();
+}
+</code></pre>
+<p><code>writeFile()</code>&#x65B9;&#x6CD5;&#x5C06;<code>CtClass</code>&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x7C7B;&#x6587;&#x4EF6;&#x5E76;&#x5C06;&#x5176;&#x5199;&#x5165;&#x672C;&#x5730;&#x78C1;&#x76D8;&#x3002;<code>Javassist</code>&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x5B57;&#x8282;&#x7801;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8981;&#x83B7;&#x53D6;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x8BF7;&#x8C03;&#x7528;<code>toBytecode()</code>&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">byte</span>[] b = cc.toBytecode();
+</code></pre>
+<p>&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;<code>CtClass</code>:</p>
+<pre><code class="lang-java">Class&lt;?&gt; clazz = cc.toClass();
+</code></pre>
+<p><code>toClass()</code>&#x65B9;&#x6CD5;&#x8BF7;&#x6C42;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x6765;&#x52A0;&#x8F7D;&#x7531;<code>CtClass</code>&#x8868;&#x793A;&#x7684;&#x7C7B;&#x6587;&#x4EF6;&#xFF08;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x8DDF;&#x4E0B;&#x6E90;&#x7801;&#xFF09;&#x3002;&#x5B83;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x88AB;&#x52A0;&#x8F7D;&#x7684;&#x7C7B;&#x7684;<code>java.lang.Class</code>&#x5BF9;&#x8C61;&#x3002;&#x6709;&#x5173;&#x66F4;&#x591A;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x7AE0;&#x8282;&#x3002;</p>
+<h4 id="&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7C7B;">&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7C7B;</h4>
+<p>&#x8981;&#x4ECE;&#x96F6;&#x5F00;&#x59CB;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7C7B;&#xFF0C;&#x5FC5;&#x987B;&#x5BF9;<code>ClassPool</code>&#x5BF9;&#x8C61;&#x8C03;&#x7528;<code>makeClass()</code>&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java">        ClassPool pool = ClassPool.getDefault();
+        CtClass cc = pool.makeClass(<span class="hljs-string">&quot;Point&quot;</span>);
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x6210;&#x5458;&#x7684;<code>Point</code>&#x7C7B;&#xFF0C;</p>
 
                                 
                                 </section>
@@ -537,12 +559,12 @@
 
             
                 
-                <a href="../03Java虚拟机规范/" class="navigation navigation-prev " aria-label="Previous page: Java虚拟机规范">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Javassit官方文档">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="01读写字节码.html" class="navigation navigation-next " aria-label="Next page: 读写字节码">
+                <a href="../../10杂七杂八/" class="navigation navigation-next " aria-label="Next page: 杂七杂八">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -553,7 +575,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Javassit官方文档","level":"1.2.4","depth":2,"next":{"title":"读写字节码","level":"1.2.4.1","depth":3,"path":"01官方文档阅读系列/09Javassit官方文档/01读写字节码.md","ref":"01官方文档阅读系列/09Javassit官方文档/01读写字节码.md","articles":[]},"previous":{"title":"Java虚拟机规范","level":"1.2.3","depth":2,"path":"01官方文档阅读系列/03Java虚拟机规范/README.md","ref":"01官方文档阅读系列/03Java虚拟机规范/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01官方文档阅读系列/09Javassit官方文档/README.md","mtime":"2020-10-29T14:38:50.199Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-29T14:38:58.419Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"读写字节码","level":"1.2.4.1","depth":3,"next":{"title":"杂七杂八","level":"1.3","depth":1,"path":"10杂七杂八/README.md","ref":"10杂七杂八/README.md","articles":[{"title":"章节一、JUC","level":"1.3.1","depth":2,"path":"10杂七杂八/01章节一、JUC/README.md","ref":"10杂七杂八/01章节一、JUC/README.md","articles":[{"title":"CAS之获取Unsafe实例","level":"1.3.1.1","depth":3,"path":"10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.md","ref":"10杂七杂八/01章节一、JUC/01CAS之获取Unsafe实例.md","articles":[]},{"title":"CAS之使用Unsafe无锁操作变量","level":"1.3.1.2","depth":3,"path":"10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.md","ref":"10杂七杂八/01章节一、JUC/02CAS之使用Unsafe无锁操作变量.md","articles":[]},{"title":"原子变量之AtomicInteger","level":"1.3.1.3","depth":3,"path":"10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","ref":"10杂七杂八/01章节一、JUC/03原子变量之AtomicInteger.md","articles":[]},{"title":"原子变量之AtomicBoolean","level":"1.3.1.4","depth":3,"path":"10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.md","ref":"10杂七杂八/01章节一、JUC/04原子变量之AtomicBoolean.md","articles":[]},{"title":"原子变量之AtomicLong","level":"1.3.1.5","depth":3,"path":"10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","ref":"10杂七杂八/01章节一、JUC/05原子变量之AtomicLong.md","articles":[]},{"title":"原子变量之AtomicReference","level":"1.3.1.6","depth":3,"path":"10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.md","ref":"10杂七杂八/01章节一、JUC/06原子变量之AtomicReference.md","articles":[]},{"title":"原子变量之AtomicIntegerArray","level":"1.3.1.7","depth":3,"path":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","ref":"10杂七杂八/01章节一、JUC/07原子变量之AtomicIntegerArray.md","articles":[]},{"title":"原子变量之AtomicLongArray","level":"1.3.1.8","depth":3,"path":"10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","ref":"10杂七杂八/01章节一、JUC/08原子变量之AtomicLongArray.md","articles":[]},{"title":"原子变量之AtomicReferenceArray","level":"1.3.1.9","depth":3,"path":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","ref":"10杂七杂八/01章节一、JUC/09原子变量之AtomicReferenceArray.md","articles":[]},{"title":"原子变量之AtomicIntegerFieldUpdater","level":"1.3.1.10","depth":3,"path":"10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/10原子变量之AtomicIntegerFieldUpdater.md","articles":[]},{"title":"原子变量之AtomicLongFieldUpdater","level":"1.3.1.11","depth":3,"path":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/11原子变量之AtomicLongFieldUpdater.md","articles":[]},{"title":"原子变量之AtomicReferenceFieldUpdater","level":"1.3.1.12","depth":3,"path":"10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.md","ref":"10杂七杂八/01章节一、JUC/12原子变量之AtomicReferenceFieldUpdater.md","articles":[]}]},{"title":"章节二、JVM","level":"1.3.2","depth":2,"path":"10杂七杂八/02章节二、JVM/README.md","ref":"10杂七杂八/02章节二、JVM/README.md","articles":[]},{"title":"章节三、常规操作","level":"1.3.3","depth":2,"path":"10杂七杂八/03章节三、常规操作/README.md","ref":"10杂七杂八/03章节三、常规操作/README.md","articles":[{"title":"读取.properties文件","level":"1.3.3.1","depth":3,"path":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","ref":"10杂七杂八/03章节三、常规操作/01读取.properties文件.md","articles":[]}]}]},"previous":{"title":"Javassit官方文档","level":"1.2.4","depth":2,"path":"01官方文档阅读系列/09Javassit官方文档/README.md","ref":"01官方文档阅读系列/09Javassit官方文档/README.md","articles":[{"title":"读写字节码","level":"1.2.4.1","depth":3,"path":"01官方文档阅读系列/09Javassit官方文档/01读写字节码.md","ref":"01官方文档阅读系列/09Javassit官方文档/01读写字节码.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["github-buttons@2.1.0","edit-link","toggle-chapters"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"github-buttons":{"repo":"huxiaoning/java","types":["star"],"size":"small"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/huxiaoning/java/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"Jett","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java学习笔记","language":"zh-hans","gitbook":"*","description":"Java学习笔记"},"file":{"path":"01官方文档阅读系列/09Javassit官方文档/01读写字节码.md","mtime":"2020-10-29T14:38:50.198Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-29T14:38:58.419Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
